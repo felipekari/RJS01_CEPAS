@@ -18,12 +18,12 @@
     </div>
   </div>
 
-  <fieldset>
-    <%= form.fields_for :wine_varieties do |wine_varieties_form| %>
-      <%= render "wine_variety_fields", form: wine_varieties_form %>
+  <div class="field">
+    <%= form.fields_for :wine_varieties do |builder| %>
+      <%= render "wine_variety_fields", form: builder %>
     <% end %>
     <%= link_to_add_fields "Agregar Cepa", form, :wine_varieties %>
-  </fieldset>
+  </div>
 
   <div class="actions mb-3">
     <%= form.submit 'Guardar', class: 'btn btn-success' %>
