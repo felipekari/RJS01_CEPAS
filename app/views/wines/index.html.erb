@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ensamblajes</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Cepas</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wines.each do |wine| %>
+      <tr>
+        <td><%= wine.name %></td>
+        <td>
+          <ul>
+            <% @wine_varieties.varietieslist(wine.id).each do |v| %>
+              <li>
+                <%= v.variety.name %> (<%= v.percentage %>%)
+              </li>
+              <% end %>
+          </ul>
+        </td>
+        <!-- <td><%= link_to 'Show', wine %></td> -->
+        <td><%= link_to 'Edit', edit_wine_path(wine) %></td>
+        <td><%= link_to 'Destroy', wine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wine', new_wine_path %>

@@ -1,0 +1,31 @@
+<%= form_with(model: wine, local: true) do |form| %>
+  <% if wine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
+
+      <ul>
+      <% wine.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="input-group mb-3">
+      <%= form.label :name, 'Nombre', class: 'input-group-text' %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+
+  <fieldset>
+    <%= form.fields_for :wine_varieties do |wine_varieties_form| %>
+      <%= render "wine_variety_fields", form: wine_varieties_form %>
+    <% end %>
+    <%= link_to_add_fields "Agregar Cepa", form, :wine_varieties %>
+  </fieldset>
+
+  <div class="actions mb-3">
+    <%= form.submit 'Guardar', class: 'btn btn-success' %>
+  </div>
+<% end %>
