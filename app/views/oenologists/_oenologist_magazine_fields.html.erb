@@ -1,0 +1,9 @@
+<fieldset>
+  <div class="input-group mb-3">
+    <span class="input-group-text">Revista</span>
+    <%= f.collection_select(:magazine_id, Magazine.order(:name), :id, :name, {prompt: 'Selecciona una revista'}, {class: 'form-select form-select-sm'}) %>
+  </div>
+  <div>
+    <%= link_to "Eliminar revista", '#', class: "remove_fields" %>
+  </div>
+</fieldset>

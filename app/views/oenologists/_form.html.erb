@@ -1,0 +1,45 @@
+<%= form_with(model: oenologist, local: true) do |f| %>
+  <% if oenologist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(oenologist.errors.count, "error") %> prohibited this oenologist from being saved:</h2>
+
+      <ul>
+      <% oenologist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="input-group mb-3">
+      <%= f.label :name, 'Nombre', class: 'input-group-text' %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="input-group mb-3">
+      <%= f.label :age, 'Edad', class: 'input-group-text' %>
+      <%= f.number_field :age, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="input-group mb-3">
+      <%= f.label :nationality, 'Nacionalidad', class: 'input-group-text' %>
+      <%= f.text_field :nationality, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :oenologist_magazines do |oenologist_magazines| %>
+      <%= render "oenologist_magazine_fields", f: oenologist_magazines %>
+    <% end %>
+    <%= link_to_add_association "Agregar Revista", f, :oenologist_magazines %>
+  </div>  
+
+  <div class="actions mb-3">
+    <%= f.submit 'Guardar', class: 'btn btn-success' %>
+  </div>
+<% end %>

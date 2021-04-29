@@ -1,0 +1,9 @@
+<fieldset>
+  <div class="nested-fields input-group my-2">
+    <span class="input-group-text">Enologo</span>
+    <%= f.collection_select(:oenologist_id, Oenologist.order(:age), :id, :name, {prompt: 'Selecciona un enologo'}, {class: 'form-select form-select-sm'}) %>
+    <span class="input-group-text">Nota</span>
+    <%= f.number_field :score, class: 'form-control form-control-sm', placeholder: 'Porcentaje' %>
+    <%= link_to_remove_association button_tag("Eliminar nota", type: "button", class: "btn btn-danger"), f %>
+  </div>
+</fieldset>

@@ -1,4 +1,6 @@
 class WineVarietiesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_admin!
   before_action :set_wine_variety, only: %i[ show edit update destroy ]
 
   # GET /wine_varieties or /wine_varieties.json

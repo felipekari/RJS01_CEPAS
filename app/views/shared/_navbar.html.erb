@@ -12,9 +12,26 @@
         <li class="nav-item active">
           <%= link_to "Cepas", varieties_path, class: "nav-link" %>
         </li>
+        <% if user_signed_in? && current_user.admin? %>
         <li class="nav-item active">
-          <%= link_to "Wine_varieties", wine_varieties_path, class: "nav-link" %>
+          <%= link_to "Enologos", oenologists_path, class: "nav-link" %>
         </li>
+        <li class="nav-item active">
+          <%= link_to "Revistas", magazines_path, class: "nav-link" %>
+        </li>
+        <% end %>
+        <% if user_signed_in? %>
+          <li class="nav-item active">
+              <%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item active">
+              <%= link_to "Registrarse", new_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item active">
+              <%= link_to "Iniciar sesion", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

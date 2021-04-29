@@ -1,12 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Ensamblajes</h1>
+
+<% if current_user.admin? %>
+  <%= link_to 'Nuevo Vino', new_wine_path %>
+  <br>
+<% end %>
 
 <table class="table table-hover">
   <thead>
     <tr>
       <th>Nombre</th>
       <th>Cepas</th>
+      <th>Notas</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -24,6 +28,15 @@
               <% end %>
           </ul>
         </td>
+        <td>
+          <ul>
+            <% @wine_oenologists.oenologistscore(wine.id).each do |e| %>
+              <li>
+                <%= e.oenologist.name %> (<%= e.score %>/100)
+              </li>
+              <% end %>
+          </ul>
+        </td>
         <!-- <td><%= link_to 'Show', wine %></td> -->
         <td><%= link_to 'Edit', edit_wine_path(wine) %></td>
         <td><%= link_to 'Destroy', wine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,6 +45,3 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Wine', new_wine_path %>

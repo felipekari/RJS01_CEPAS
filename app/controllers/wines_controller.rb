@@ -1,10 +1,13 @@
 class WinesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_admin!, except: %i[ index show ]
   before_action :set_wine, only: %i[ show edit update destroy ]
 
   # GET /wines or /wines.json
   def index
     @wines = Wine.all
     @wine_varieties = WineVariety.all
+    @wine_oenologists = WineOenologist.all
   end
 
   # GET /wines/1 or /wines/1.json
@@ -65,6 +68,6 @@ class WinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wine_params
-      params.require(:wine).permit(:name, wine_varieties_attributes: [:id, :variety_id, :percentage, :_destroy])
+      params.require(:wine).permit(:name, wine_varieties_attributes: [:id, :variety_id, :percentage, :_destroy], wine_oenologists_attributes: [:id, :oenologist_id, :score, :_destroy])
     end
 end

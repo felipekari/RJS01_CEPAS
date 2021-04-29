@@ -20,12 +20,20 @@
 
   <div class="field">
     <%= f.fields_for :wine_varieties do |wine_varieties| %>
-      <%= render "wine_variety_fields", form: wine_varieties %>
+      <%= render "wine_variety_fields", f: wine_varieties %>
     <% end %>
-    <%= link_to_add_association "Agregar Cepa", f, :wine_varieties %>
+    <%= link_to_add_association button_tag("Agregar Cepa", type: "button", class: "btn btn-primary my-2"), f, :wine_varieties %>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :wine_oenologists do |wine_oenologists| %>
+      <%= render "wine_oenologist_fields", f: wine_oenologists %>
+    <% end %>
+    <%= link_to_add_association button_tag("Agregar Nota", type: "button", class: "btn btn-secondary my-2"), f, :wine_oenologists %>
   </div>
 
   <div class="actions mb-3">
     <%= f.submit 'Guardar', class: 'btn btn-success' %>
   </div>
+
 <% end %>
